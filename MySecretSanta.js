@@ -7,8 +7,8 @@ class MySecretSanta {
         try {
             return CryptoJS.enc.Base64.parse(encryptedText).toString(CryptoJS.enc.Utf8);
         } catch (error) {
-            console.error("Erro ao decifrar:", error);
-            return "Erro ao decifrar o resultado.";
+            console.error('Erro ao decifrar:', error);
+            return 'Erro ao decifrar o resultado.';
         }
     }
 

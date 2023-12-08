@@ -30,7 +30,7 @@ class SecretSanta {
             listItem.textContent = participant;
 
             const removeButton = document.createElement('button');
-            removeButton.classList.add("close");
+            removeButton.classList.add('close');
             removeButton.textContent = 'X';
             removeButton.addEventListener('click', () => this.removeParticipant(index));
 

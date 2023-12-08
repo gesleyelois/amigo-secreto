@@ -1,6 +1,7 @@
 class SecretSantaResult {
     constructor() {
         this.resultDiv = document.getElementById('result');
+        this.init();
     }
 
     showResult() {
@@ -22,8 +23,13 @@ class SecretSantaResult {
                         const participantName = Object.keys(participantResult)[0];
                         const participantDraw = participantResult[participantName];
 
+                        const resultText = `<strong>${participantName}</strong> para visualizar seu amigo secreto clique <a href="meu-amigo-secreto.html?codigo=${participantDraw}" target="_blank">aqui</a>!`;
+
+                        const link = `${window.location.host}/amigo-secreto/meu-amigo-secreto.html?codigo=${participantDraw}`;
+                        const resultTextToCopy = `**${participantName}** para visualizar seu amigo secreto clique [aqui](${link})!`;
+
                         // Criar um link com o resultado como parâmetro
-                        this.resultDiv.innerHTML += `<p><strong>${participantName}</strong> para visualizar seu amigo secreto clique <a href="meu-amigo-secreto.html?codigo=${participantDraw}" target="_blank">aqui</a>!</p>`;
+                        this.resultDiv.innerHTML += `<p>${resultText} <button onclick="secretSantaResult.copyTextToClipboard('${resultTextToCopy}')">Compartilhar</button></p>`;
                     });
                 } else {
                     this.resultDiv.innerHTML += '<p>Formato de resultado inválido.</p>';
@@ -36,6 +42,19 @@ class SecretSantaResult {
         }
     }
 
+    copyTextToClipboard(text) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        document.body.appendChild(textarea);
+
+        textarea.select();
+        document.execCommand('copy');
+
+        document.body.removeChild(textarea);
+
+        console.log('Texto copiado para a área de transferência!');
+    }
+
     init() {
         document.addEventListener('DOMContentLoaded', () => {
             this.showResult();
@@ -43,4 +62,4 @@ class SecretSantaResult {
     }
 }
 
-new SecretSantaResult().init();
+const secretSantaResult = new SecretSantaResult();
