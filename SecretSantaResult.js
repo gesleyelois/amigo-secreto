@@ -26,7 +26,7 @@ class SecretSantaResult {
                         const resultText = `<strong>${participantName}</strong> para visualizar seu amigo secreto clique <a href="meu-amigo-secreto.html?codigo=${participantDraw}" target="_blank">aqui</a>!`;
 
                         const link = `${window.location.host}/amigo-secreto/meu-amigo-secreto.html?codigo=${participantDraw}`;
-                        const resultTextToCopy = `**${participantName}** para visualizar seu amigo secreto clique [aqui](${link})!`;
+                        const resultTextToCopy = `*${participantName}* para visualizar seu amigo secreto acesso o link: ${link}!`;
 
                         // Criar um link com o resultado como parâmetro
                         this.resultDiv.innerHTML += `<p>${resultText} <button onclick="secretSantaResult.copyTextToClipboard('${resultTextToCopy}')">Compartilhar</button></p>`;
