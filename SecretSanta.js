@@ -66,11 +66,12 @@ class SecretSanta {
     }
 
     shuffle(array) {
-        for (let i = array.length - 1; i > 0; i--) {
+        const shuffledArray = array.slice(); // Criar uma cópia do array para não modificar o original
+        for (let i = shuffledArray.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
+            [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
         }
-        return array;
+        return shuffledArray;
     }
 
     encrypt(text) {
