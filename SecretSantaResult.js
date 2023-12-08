@@ -26,10 +26,10 @@ class SecretSantaResult {
                         const resultText = `<strong>${participantName}</strong> para visualizar seu amigo secreto clique <a href="meu-amigo-secreto.html?codigo=${participantDraw}" target="_blank">aqui</a>!`;
 
                         const link = `${window.location.host}/amigo-secreto/meu-amigo-secreto.html?codigo=${participantDraw}`;
-                        const resultTextToCopy = `*${participantName}* para visualizar seu amigo secreto acesse o link: ${link}!`;
+                        const resultTextToCopy = `*${participantName}* para visualizar seu amigo secreto acesse o link: ${link}`;
 
                         // Criar um link com o resultado como parâmetro
-                        this.resultDiv.innerHTML += `<p>${resultText} <button onclick="secretSantaResult.copyTextToClipboard('${resultTextToCopy}')">Compartilhar</button></p>`;
+                        this.resultDiv.innerHTML += `<p>${resultText} <button onclick="secretSantaResult.copyTextToClipboard(this, '${resultTextToCopy}')">Compartilhar</button></p>`;
                     });
                 } else {
                     this.resultDiv.innerHTML += '<p>Formato de resultado inválido.</p>';
@@ -42,7 +42,7 @@ class SecretSantaResult {
         }
     }
 
-    copyTextToClipboard(text) {
+    copyTextToClipboard(button, text) {
         const textarea = document.createElement('textarea');
         textarea.value = text;
         document.body.appendChild(textarea);
@@ -53,6 +53,14 @@ class SecretSantaResult {
         document.body.removeChild(textarea);
 
         console.log('Texto copiado para a área de transferência!');
+
+        // Altera o texto do botão para "Compartilhado"
+        button.textContent = 'Texto copiado!';
+
+        // Aguarda 3 segundos e restaura o texto do botão para "Compartilhar"
+        setTimeout(() => {
+            button.textContent = 'Compartilhar';
+        }, 3000);
     }
 
     init() {
