@@ -45,11 +45,13 @@ class SecretSanta {
             return;
         }
 
+        // Criar uma cópia da matriz de participantes
         const shuffledParticipants = this.shuffle([...this.participants]);
         const result = {};
 
         for (let i = 0; i < this.participants.length; i++) {
             if (this.participants[i] === shuffledParticipants[i]) {
+                // Se a mesma pessoa iria tirar ela mesma, troca com a próxima pessoa
                 const nextIndex = (i + 1) % this.participants.length;
                 [shuffledParticipants[i], shuffledParticipants[nextIndex]] = [shuffledParticipants[nextIndex], shuffledParticipants[i]];
             }
