@@ -1,7 +1,6 @@
 class SecretSanta {
     constructor() {
         this.participants = [];
-
         this.setupEvents();
     }
 
@@ -45,21 +44,21 @@ class SecretSanta {
             return;
         }
 
-        // Criar uma cópia da matriz de participantes
-        const shuffledParticipants = this.shuffle([...this.participants]);
+
+        const uniqueParticipants = [...new Set(this.participants)]; // Remover participantes duplicados
+        const shuffledParticipants = this.shuffle([...uniqueParticipants]);
         const result = {};
 
-        for (let i = 0; i < this.participants.length; i++) {
-            if (this.participants[i] === shuffledParticipants[i]) {
-                // Se a mesma pessoa iria tirar ela mesma, troca com a próxima pessoa
-                const nextIndex = (i + 1) % this.participants.length;
+        for (let i = 0; i < uniqueParticipants.length; i++) {
+            if (uniqueParticipants[i] === shuffledParticipants[i]) {
+                const nextIndex = (i + 1) % uniqueParticipants.length;
                 [shuffledParticipants[i], shuffledParticipants[nextIndex]] = [shuffledParticipants[nextIndex], shuffledParticipants[i]];
             }
-            result[this.participants[i]] = shuffledParticipants[i];
+            result[uniqueParticipants[i]] = shuffledParticipants[i];
         }
 
         const finalResult = {
-            participantes: this.participants.map(participant => ({ [participant]: this.encrypt(result[participant]) }))
+            participantes: uniqueParticipants.map(participant => ({ [participant]: this.encrypt(result[participant]) }))
         };
 
         localStorage.setItem('secretSantaResult', JSON.stringify(finalResult));
