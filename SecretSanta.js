@@ -9,6 +9,13 @@ class SecretSanta {
         const participant = input.value.trim();
 
         if (participant !== '') {
+            // Verificar se o participante já está na lista
+            if (this.participants.includes(participant)) {
+                alert('Este participante já foi adicionado.');
+                input.value = '';
+                return;
+            }
+
             this.participants.push(participant);
             this.updateParticipantsList();
             input.value = '';
