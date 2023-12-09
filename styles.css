@@ -14,13 +14,14 @@ body {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    max-width: 400px; /* Limit the width for better readability on larger screens */
+    max-width: 400px;
     width: 100%;
 }
 
 .input-container {
     display: flex;
     gap: 10px;
+    align-items: baseline; /* Alinha os elementos pela baseline (base do texto) */
     margin-bottom: 20px;
 }
 
@@ -29,24 +30,42 @@ input[type=text] {
     height: 35px;
 }
 
+li  span {
+    border: 1px solid;
+    padding: 5px;
+    width: 75%;
+}
+
 button {
     padding: 8px 16px;
     cursor: pointer;
 }
 
 button.close {
-    padding: 5px;
-    margin-left: 5px;
-    border-radius: 5px;
-    background: white;
+    border: 1px solid;
 }
 
 ul {
-    list-style-type: none;
     padding: 0;
 }
 
-li {
+ul li {
     margin: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
+ul {
+    counter-reset: li; /* Reseta o contador no início da lista */
+}
+
+ul li::before {
+    content: counter(li); /* Adiciona a numeração automática */
+    counter-increment: li; /* Incrementa o contador */
+}
+
+#detalhe p {
+    border: 1px solid;
+    padding: 10px;
+}

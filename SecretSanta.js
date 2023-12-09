@@ -33,13 +33,16 @@ class SecretSanta {
 
         this.participants.forEach((participant, index) => {
             const listItem = document.createElement('li');
-            listItem.textContent = participant;
+
+            const spanItem = document.createElement('span');
+            spanItem.textContent = participant;
 
             const removeButton = document.createElement('button');
             removeButton.classList.add('close');
             removeButton.textContent = 'X';
             removeButton.addEventListener('click', () => this.removeParticipant(index));
 
+            listItem.appendChild(spanItem);
             listItem.appendChild(removeButton);
             list.appendChild(listItem);
         });

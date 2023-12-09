@@ -29,7 +29,7 @@ class SecretSantaResult {
                         const resultTextToCopy = `*${participantName}* para visualizar seu amigo secreto acesse o link: ${link}`;
 
                         // Criar um link com o resultado como parâmetro
-                        this.resultDiv.innerHTML += `<p>${resultText} <button onclick="secretSantaResult.copyTextToClipboard(this, '${resultTextToCopy}')">Compartilhar</button></p>`;
+                        this.resultDiv.innerHTML += `<p>${resultText} <button onclick="secretSantaResult.copyTextToClipboard(this, '${resultTextToCopy}')">Copiar</button></p>`;
                     });
                 } else {
                     this.resultDiv.innerHTML += '<p>Formato de resultado inválido.</p>';
@@ -59,7 +59,7 @@ class SecretSantaResult {
 
         // Aguarda 3 segundos e restaura o texto do botão para "Compartilhar"
         setTimeout(() => {
-            button.textContent = 'Compartilhar';
+            button.textContent = 'Copiar';
         }, 3000);
     }
 
