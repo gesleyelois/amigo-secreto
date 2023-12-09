@@ -1,7 +1,8 @@
 class SecretSanta {
     constructor() {
-        this.participants = [];
+        this.participants = this.retrieveParticipantsFromStorage() || [];
         this.setupEvents();
+        this.updateParticipantsList();
     }
 
     addParticipant() {
@@ -9,7 +10,6 @@ class SecretSanta {
         const participant = input.value.trim();
 
         if (participant !== '') {
-            // Verificar se o participante já está na lista
             if (this.participants.includes(participant)) {
                 alert('Este participante já foi adicionado.');
                 input.value = '';
@@ -18,6 +18,7 @@ class SecretSanta {
 
             this.participants.push(participant);
             this.updateParticipantsList();
+            this.saveParticipantsToStorage();
             input.value = '';
         }
     }
@@ -25,6 +26,7 @@ class SecretSanta {
     removeParticipant(index) {
         this.participants.splice(index, 1);
         this.updateParticipantsList();
+        this.saveParticipantsToStorage();
     }
 
     updateParticipantsList() {
@@ -54,8 +56,7 @@ class SecretSanta {
             return;
         }
 
-
-        const uniqueParticipants = [...new Set(this.participants)]; // Remover participantes duplicados
+        const uniqueParticipants = [...new Set(this.participants)];
         const shuffledParticipants = this.shuffle([...uniqueParticipants]);
         const result = {};
 
@@ -76,7 +77,7 @@ class SecretSanta {
     }
 
     shuffle(array) {
-        const shuffledArray = array.slice(); // Criar uma cópia do array para não modificar o original
+        const shuffledArray = array.slice();
         for (let i = shuffledArray.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
@@ -86,6 +87,15 @@ class SecretSanta {
 
     encrypt(text) {
         return CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(text));
+    }
+
+    saveParticipantsToStorage() {
+        localStorage.setItem('secretSantaParticipants', JSON.stringify(this.participants));
+    }
+
+    retrieveParticipantsFromStorage() {
+        const storedParticipants = localStorage.getItem('secretSantaParticipants');
+        return storedParticipants ? JSON.parse(storedParticipants) : null;
     }
 
     setupEvents() {
