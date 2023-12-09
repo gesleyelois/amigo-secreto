@@ -5,7 +5,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .container {
@@ -14,9 +14,18 @@ body {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
+    max-width: 400px; /* Limit the width for better readability on larger screens */
+    width: 100%;
+}
+
+.input-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
 input[type=text] {
+    flex: 1;
     height: 35px;
 }
 
@@ -40,3 +49,4 @@ ul {
 li {
     margin: 5px;
 }
+
