@@ -59,13 +59,18 @@ class SecretSanta {
         const uniqueParticipants = [...new Set(this.participants)];
         const shuffledParticipants = this.shuffle([...uniqueParticipants]);
         const result = {};
+        const drawnParticipants = new Set();
 
         for (let i = 0; i < uniqueParticipants.length; i++) {
-            if (uniqueParticipants[i] === shuffledParticipants[i]) {
-                const nextIndex = (i + 1) % uniqueParticipants.length;
-                [shuffledParticipants[i], shuffledParticipants[nextIndex]] = [shuffledParticipants[nextIndex], shuffledParticipants[i]];
+            let draw = shuffledParticipants[i];
+
+            while (drawnParticipants.has(draw) || uniqueParticipants[i] === draw) {
+                // Sortear novamente se já foi sorteado ou se é a própria pessoa
+                draw = shuffledParticipants[(i + 1) % uniqueParticipants.length];
             }
-            result[uniqueParticipants[i]] = shuffledParticipants[i];
+
+            result[uniqueParticipants[i]] = draw;
+            drawnParticipants.add(draw);
         }
 
         const finalResult = {
