@@ -103,6 +103,12 @@ class SecretSanta {
         return storedParticipants ? JSON.parse(storedParticipants) : null;
     }
 
+    clearSecretSanta() {
+        localStorage.clear();
+        this.participants = [];
+        this.updateParticipantsList();
+    }
+
     setupEvents() {
         document.getElementById('addParticipantBtn').addEventListener('click', () => {
             this.addParticipant();
@@ -110,6 +116,10 @@ class SecretSanta {
 
         document.getElementById('drawSecretSantaBtn').addEventListener('click', () => {
             this.drawSecretSanta();
+        });
+
+        document.getElementById('clearSecretSantaBtn').addEventListener('click', () => {
+            this.clearSecretSanta();
         });
     }
 }

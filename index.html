@@ -15,12 +15,19 @@
 <body>
 <div class="container">
     <h1>Sorteio Amigo Secreto</h1>
-    <div class="input-container">
+    <div class="row input-container">
         <input type="text" id="participantInput" placeholder="Nome do participante">
         <button id="addParticipantBtn">Adicionar</button>
     </div>
-    <ul id="participantsList"></ul>
-    <button id="drawSecretSantaBtn">Sortear</button>
+    <div class="row">
+        <ul id="participantsList"></ul>
+    </div>
+    <div class="row">
+        <button id="drawSecretSantaBtn">Sortear</button>
+    </div>
+    <div class="row">
+        <button id="clearSecretSantaBtn">Resetar</button>
+    </div>
 </div>
 
 <script src="SecretSanta.js"></script>

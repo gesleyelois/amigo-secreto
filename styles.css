@@ -30,6 +30,10 @@ input[type=text] {
     height: 35px;
 }
 
+.row {
+    margin-top: 10px;
+}
+
 li  span {
     border: 1px solid;
     padding: 5px;
