@@ -25,7 +25,7 @@ class SecretSantaResult {
 
                         const resultText = `<strong>${participantName}</strong> para visualizar seu amigo secreto clique <a href="meu-amigo-secreto.html?codigo=${participantDraw}" target="_blank">aqui</a>!`;
 
-                        const link = `${window.location.host}/amigo-secreto/meu-amigo-secreto.html?codigo=${participantDraw}`;
+                        const link = `${window.location.origin}/amigo-secreto/meu-amigo-secreto.html?codigo=${participantDraw}`;
                         const resultTextToCopy = `*${participantName}* para visualizar seu amigo secreto acesse o link: ${link}`;
 
                         // Criar um link com o resultado como parâmetro
