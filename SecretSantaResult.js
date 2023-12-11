@@ -5,12 +5,10 @@ class SecretSantaResult {
     }
 
     showResult() {
-        // Limpar o conteúdo existente
         this.resultDiv.innerHTML = '';
 
         this.resultDiv.innerHTML += '<h1>Resultado do Amigo Secreto</h1>';
 
-        // Recuperar resultado do localStorage
         const encryptedResult = localStorage.getItem('secretSantaResult');
 
         if (encryptedResult) {
@@ -18,7 +16,6 @@ class SecretSantaResult {
                 const resultObj = JSON.parse(encryptedResult);
 
                 if (resultObj && resultObj.participantes) {
-                    // Exibir resultados para cada participante
                     resultObj.participantes.forEach(participantResult => {
                         const participantName = Object.keys(participantResult)[0];
                         const participantDraw = participantResult[participantName];
@@ -28,7 +25,6 @@ class SecretSantaResult {
                         const link = `${window.location.origin}/amigo-secreto/meu-amigo-secreto.html?codigo=${participantDraw}`;
                         const resultTextToCopy = `*${participantName}* para visualizar seu amigo secreto acesse o link: ${link}`;
 
-                        // Criar um link com o resultado como parâmetro
                         this.resultDiv.innerHTML += `<p>${resultText} <button onclick="secretSantaResult.copyTextToClipboard(this, '${resultTextToCopy}')">Copiar</button></p>`;
                     });
                 } else {
@@ -54,10 +50,8 @@ class SecretSantaResult {
 
         console.log('Texto copiado para a área de transferência!');
 
-        // Altera o texto do botão para "Compartilhado"
         button.textContent = 'Texto copiado!';
 
-        // Aguarda 3 segundos e restaura o texto do botão para "Compartilhar"
         setTimeout(() => {
             button.textContent = 'Copiar';
         }, 3000);

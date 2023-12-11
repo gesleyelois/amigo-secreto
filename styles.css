@@ -33,7 +33,7 @@ body {
 .input-container {
     display: flex;
     gap: 10px;
-    align-items: baseline; /* Alinha os elementos pela baseline (base do texto) */
+    align-items: baseline;
     margin-bottom: 20px;
 }
 
@@ -73,12 +73,12 @@ ul li {
 }
 
 ul {
-    counter-reset: li; /* Reseta o contador no início da lista */
+    counter-reset: li;
 }
 
 ul li::before {
-    content: counter(li); /* Adiciona a numeração automática */
-    counter-increment: li; /* Incrementa o contador */
+    content: counter(li);
+    counter-increment: li;
 }
 
 #detalhe p {

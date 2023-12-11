@@ -13,12 +13,10 @@ class MySecretSanta {
     }
 
     init() {
-        // Limpar o conteúdo existente
         this.resultDiv.innerHTML = '';
 
         this.resultDiv.innerHTML += '<h1>Meu amigo secreto é</h1>';
 
-        // Recuperar parâmetro da URL
         const urlParams = new URLSearchParams(window.location.search);
         const resultadoParam = urlParams.get('codigo');
 

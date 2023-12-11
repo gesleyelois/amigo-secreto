@@ -56,7 +56,6 @@ class SecretSanta {
         messageDiv.textContent = message;
         document.body.appendChild(messageDiv);
 
-        // Remove a mensagem após 3 segundos
         setTimeout(() => {
             document.body.removeChild(messageDiv);
         }, 3000);
@@ -77,7 +76,6 @@ class SecretSanta {
             let draw = shuffledParticipants[i];
 
             while (drawnParticipants.has(draw) || uniqueParticipants[i] === draw) {
-                // Sortear novamente se já foi sorteado ou se é a própria pessoa
                 draw = shuffledParticipants[(i + 1) % uniqueParticipants.length];
             }
 
