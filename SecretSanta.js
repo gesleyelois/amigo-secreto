@@ -11,7 +11,7 @@ class SecretSanta {
 
         if (participant !== '') {
             if (this.participants.includes(participant)) {
-                alert('Este participante já foi adicionado.');
+                this.showMessage('Este participante já foi adicionado.');
                 input.value = '';
                 return;
             }
@@ -50,9 +50,21 @@ class SecretSanta {
         });
     }
 
+    showMessage(message) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message');
+        messageDiv.textContent = message;
+        document.body.appendChild(messageDiv);
+
+        // Remove a mensagem após 3 segundos
+        setTimeout(() => {
+            document.body.removeChild(messageDiv);
+        }, 3000);
+    }
+
     drawSecretSanta() {
         if (this.participants.length < 3) {
-            alert('É necessário ter mais que 2 participantes para realizar o sorteio.');
+            this.showMessage('É necessário ter mais que 2 participantes para realizar o sorteio.');
             return;
         }
 
